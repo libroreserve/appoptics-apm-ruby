@@ -139,7 +139,7 @@ module SolarWindsAPM
     end
 
     def validate_token(token)
-      if (token !~ /^[0-9a-zA-Z_-]{71}$/) && ENV['SW_APM_COLLECTOR'] !~ /java-collector:1222/
+      if (token !~ /^[0-9a-zA-Z_-]{60,80}$/) && ENV['SW_APM_COLLECTOR'] !~ /java-collector:1222/
         masked = "#{token[0..3]}...#{token[-4..-1]}"
         SolarWindsAPM.logger.error "[solarwinds_apm/oboe_options] SW_APM_SERVICE_KEY problem. API Token in wrong format. Masked token: #{masked}"
         return false
